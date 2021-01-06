@@ -26,7 +26,7 @@ bookmarkRouter.get('/bookmarks/:id', (req, res) => {
 
 bookmarkRouter.post('/bookmarks', jsonParser, (req, res) => {
   const { title, url, rating, description } = req.body;
-  const { bookmark_id } = req.params;
+  const { id } = req.params;
 
   if (!title) {
     logger.error('Title is required');
@@ -44,12 +44,9 @@ bookmarkRouter.post('/bookmarks', jsonParser, (req, res) => {
 
   bookmarks.push(bookmark);
 
-  logger.info(`Bookmark with id: ${bookmark_id} created.`);
+  logger.info(`Bookmark with id: ${id} created.`);
 
-  res
-    .status(201)
-    .location(`http://localhost:8000/bookmark/${bookmark_id}`)
-    .json({ bookmark_id });
+  res.status(201).location(`http://localhost:8000/bookmark/${id}`).json({ id });
 });
 
 bookmarkRouter.delete('/bookmarks/:id', (req, res) => {
