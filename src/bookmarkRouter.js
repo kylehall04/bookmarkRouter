@@ -46,7 +46,10 @@ bookmarkRouter.post('/bookmarks', jsonParser, (req, res) => {
 
   logger.info(`Bookmark with id: ${id} created.`);
 
-  res.status(201).location(`http://localhost:8000/bookmark/${id}`).json({ id });
+  res
+    .status(201)
+    .location(`http://localhost:8000/bookmark/${id}`)
+    .json({ bookmark });
 });
 
 bookmarkRouter.delete('/bookmarks/:id', (req, res) => {
